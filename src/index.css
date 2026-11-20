@@ -1,111 +1,400 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+/* css reset */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
+* {
   margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
   box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* serve a dire al browser di ignorare ogni click sui tag svg dentro i buttons*/
+button svg {
+  pointer-events: none;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+:root {
+  --header-min-height: 10vh;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
+/* levo il triangolino del dropdown header */
+
+.dropdown-toggle.no-caret::after,
+.dropdown-toggle.no-caret::before {
+  display: none !important;
+  content: none !important;
+  border: 0 !important;
+}
+
+/* no scrollbar */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+header {
+  position: relative;
+  z-index: 10;
+  color: black;
+  min-height: var(--header-min-height);
+  box-shadow: 0px 1px 8px;
+}
+
+header>h1>a {
+  text-shadow: 1px 1px 1px;
+  transition: all 0.4s ease-in-out;
+}
+
+/* header logo animation class */
+
+.lift {
+  text-shadow: 10px 5px 12px;
+}
+
+
+main {
+  background-color: rgb(69, 18, 117);
+  color: white;
+  min-height: calc(100vh - var(--header-min-height));
+  /* general font */
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.base-nav-link {
+  color: black;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link-active {
+  text-decoration: underline;
+}
+
+.title-font {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* movie basic card */
+
+.basic-card-container {
+  padding: 10px;
+  height: 100%;
+}
+
+.basic-card-bottom {
+  background-color: rgba(240, 248, 255, 0.24);
+  border-radius: 0 0 15px 15px;
+  flex-grow: 1;
+}
+
+.basic-card-img-wrapper {
+  width: 100%;
+  aspect-ratio: 2/3;
+}
+
+.basic-card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+/* motto-animation */
+
+.motto-container {
+  min-height: 85vh;
+}
+
+.motto-letter {
+  transition: all 1.2s ease-in-out;
+}
+
+.first-letter {
+  color: rgb(196, 53, 53);
+}
+
+.hidden-letter {
+  opacity: 0;
+}
+
+/* Add To Favourite */
+
+.add-to-favourite:hover {
+  cursor: pointer;
+}
+
+/* vault trash btn  */
+
+.vault-trash-btn:hover {
+  cursor: pointer;
+}
+
+/* dropdown bootstrap */
+
+#myDropdownStyle {
+  min-width: 200px;
+  background-color: rgba(50, 9, 67, 0.779);
+  color: white;
+  padding: 10px;
+}
+
+#searchByTitle,
+#searchByName {
+  border: 1px solid #FFC107;
+  background-color: rgba(240, 248, 255, 0.34);
+  color: rgb(69, 18, 117);
+  min-height: 30px;
+  padding: 0 3px;
+  border-radius: 7px;
+  caret-color: rgb(69, 18, 117);
+}
+
+#searchByTitle:focus,
+#searchByName:focus {
+  background-color: #FFC107;
+}
+
+
+#searchByTitle:focus-visible,
+#searchByName:focus-visible {
+  outline: none;
+  border: 2px solid #ffc107; /* Ad esempio un giallo/arancione (stile Bootstrap warning) */
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+#searchByTitle::placeholder,
+#searchByName::placeholder {
+  color: #ffc107 !important; /* Inserisci qui il colore che preferisci */
+  opacity: 1; /* Importante: alcuni browser riducono l'opacità di default del placeholder */
+}
+
+/* Per Firefox (vecchie e nuove versioni) */
+#searchByTitle::-moz-placeholder,
+#searchByName::-moz-placeholder {
+  color: #ffc107 !important;
+  opacity: 1;
+}
+
+/* Per Internet Explorer 10-11 (se ti serve compatibilità retroattiva) */
+#searchByTitle:-ms-input-placeholder,
+#searchByName::-ms-input-placeholder {
+  color: #ffc107 !important;
+}
+
+/* Per Microsoft Edge vecchio */
+#searchByTitle::-ms-input-placeholder,
+#searchByName::-ms-input-placeholder {
+  color: #ffc107 !important;
+}
+
+.form-check-input {
+    --bs-form-check-bg: #ffc107;
+}
+
+/* modifiche personali form-switch */
+
+/* 1. Quando NON è spuntato e NON è in focus: pallino giallo, sfondo standard */
+.form-switch .form-check-input:not(:checked) {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffc107'/%3e%3c/svg%3e");
+}
+
+/* 2. Quando NON è spuntato ma è IN FOCUS: pallino giallo ben visibile */
+.form-switch .form-check-input.form-check-input:not(:checked):focus {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffc107'/%3e%3c/svg%3e") !important;
+}
+
+/* 3. Quando È SPUNTATO (Checked) e va in focus: pallino bianco sulbg giallo */
+.form-switch .form-check-input.form-check-input:checked:focus {
+    --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+}
+
+.form-check-input:checked {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+.form-check-input:focus {
+    border-color: #ffdc75 !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 .25rem rgba(202, 143, 3, 0.25) !important;
+}
+
+
+
+/* carousels homepage */
+
+/* carousels homepage */
+
+/* carousels homepage */
+
+/* carousels homepage */
+
+/* carousels homepage */
+
+/* Contenitore dei caroselli verticali */
+.vertical-marquee-container {
+  width: 220px;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 70%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 70%, transparent);
+  
+  /* Isola il ricalcolo del layout dal resto della pagina */
+  contain: strict; 
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Transizione leggera solo su opacità e scala (100% GPU, zero lag) */
+.vertical-marquee-container.glitch-active {
+  opacity: 0.15;
+  transform: scale(0.96) translateZ(0);
+}
+
+/* Traccia mossa da JavaScript */
+.vertical-marquee-track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  /* Forza il layer composito sulla scheda grafica */
+  transform: translate3d(0, 0, 0); 
+  backface-visibility: hidden;
+}
+
+
+/* movie detail card */
+
+.backdrop-wrapper {
+  position: relative;
+  min-height: calc(100vh - var(--header-min-height));
+  width: 100%;
+  background-color: #000; /* Sfondo nero di sicurezza sotto il loader */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.backdrop-wrapper::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: var(--bg-image);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Quando l'immagine di sfondo è pronta, applica l'opacità del backdrop */
+.backdrop-wrapper.loaded::before {
+  opacity: 0.6;
+}
+
+.backdrop-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.detail-card-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  padding: 35px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.305);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Dimensioni del poster: mantiene rigorosamente 2/3 */
+.detail-card-img-wrapper {
+  width: 260px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start; /* Evita che l'immagine venga stirata in altezza */
+  justify-content: center;
+}
+
+.detail-card-img {
+  width: 100%;
+  height: auto; /* L'altezza si adatta automaticamente alle proporzioni reali del poster */
+  border-radius: 15px; /* Ora gli angoli arrotondati aderiscono esattamente all'immagine */
+  display: block;
+}
+
+/* Container per la descrizione con scrolling fluido */
+.description-scroll {
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 8px;
+  line-height: 1.5;
+}
+
+/* Stile scrollbar personalizzato per la descrizione */
+.description-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.description-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 4px;
-  color: var(--text-h);
+}
+.description-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+.description-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+
+/* skeleton loader */
+
+.skeleton-loader {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Adattamenti responsive tramite media query */
+@media (min-width: 992px) {
+  .detail-card-img-wrapper {
+    width: 300px; /* Poster più generoso sui monitor grandi */
+  }
+}
+
+@media (max-width: 991.98px) {
+  .detail-card-wrapper {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 520px) {
+  .search-input-container {
+    width: 110px;
+  }
 }

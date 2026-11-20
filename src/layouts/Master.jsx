@@ -1,11 +1,11 @@
-import { Outlet } from "react-bootstrap-icons";
+import { Outlet } from "react-router-dom";
 import Header from "../components/Header.jsx";
 
 function Master() {
   return (
     <>
     <Header/>
-    <main>
+    <main className="no-scrollbar" style={{ overflowY: 'auto', height: 'calc(100vh - var(--header-min-height))' }}>
         <Outlet/>
     </main>
     </>
